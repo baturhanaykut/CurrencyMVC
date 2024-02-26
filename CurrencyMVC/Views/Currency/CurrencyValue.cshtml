@@ -1,0 +1,33 @@
+﻿@model List<ResultCurrencyDetailVm>
+@{
+    int count = 1;
+}
+
+<table class="table table-striped table-hover table-bordered text-center align-middle">
+    <thead>
+        <tr>
+            <th>#</th>
+            <th>Döviz Adı</th>
+            <th>Döviz Değeri</th>
+           
+
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@count</td>
+                <td>@item.CurrencyName</td>
+                <td>@item.Value</td>
+                
+            </tr>
+            count++;
+        }
+
+
+    </tbody>
+</table>
+
+
+

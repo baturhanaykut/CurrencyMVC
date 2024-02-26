@@ -1,0 +1,24 @@
+﻿@model UpdateCurrencyVm
+@{
+    ViewData["Title"] = "UpdateCurrency";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<form asp-action="UpdateCurrency" asp-controller="Currency" method="post" class="offset-3 col-lg-6">
+    <input type="hidden" asp-for=Id />
+    <div class="mb-3">
+        <label asp-for="Name" class="form-label">Döviz İsmi</label>
+        <input type="text" class="form-control" asp-for="Name">
+        <span asp-validation-for="Name" class="text-danger"></span>
+    </div>
+    <div class="mb-3">
+        <label asp-for="AttributeName" class="form-label">Döviz Html İsmi</label>
+        <input type="text" class="form-control" asp-for="AttributeName">
+        <span asp-validation-for="AttributeName" class="text-danger"></span>
+        <div id="emailHelp" class="form-text">Verilerin çekildiği <a href="https://www.doviz.com/">internet sayfasının</a>, istenen döviz kuru için belirlediği HTML kodunu girmeniz gerekmektedir.</div>
+    </div>
+
+    <button type="submit" class="btn btn-primary col-lg-5 mt-4">Döviz İsmi Güncelle</button>
+</form>
+
