@@ -9,7 +9,7 @@
             <th>#</th>
             <th>Döviz Adı</th>
             <th>Döviz Değeri</th>
-           
+
 
         </tr>
     </thead>
@@ -19,8 +19,8 @@
             <tr>
                 <td>@count</td>
                 <td>@item.CurrencyName</td>
-                <td>@item.Value</td>
-                
+                <td id="@item.CurrencyName">@item.Value</td>
+
             </tr>
             count++;
         }
@@ -29,5 +29,30 @@
     </tbody>
 </table>
 
+@section Scripts
+{
+    <script type="text/javascript">
+        $(document).ready(() => {
+
+            var connection = new signalR.HubConnectionBuilder().withUrl("https://localhost:7014/currencyhub").build();
+
+            connection.start().then(() => {
+                connection.invoke("SendCurrentCurrencyValue");
+            }).catch((err) => { console.log(err) });
 
 
+            connection.on("CurrentCurrencyValue", (currencies) => {
+
+                currencies.forEach(item => {
+                    var currencyTag = document.getElementById(item.currencyName);
+                    currencyTag.innerText = item.value;
+                });
+
+            })
+        })
+    </script>
+
+}
+
+
+<script src="~/lib/microsoft/signalr/dist/browser/signalr.min.js"></script>
